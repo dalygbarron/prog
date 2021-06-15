@@ -1,5 +1,17 @@
 #!/usr/bin/env lua
 
+-- Prog, the Program Progenitor.
+-- Copyright (C) 2021 Daly Graham Barron
+-- This program is free software: you can redistribute it and/or modify it
+-- under the terms of the GNU General Public License version 3 as published
+-- by the Free Software Foundation.
+-- This program is distributed in the hope that it will be useful, but WITHOUT
+-- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+-- FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+-- more details.
+-- You should have received a copy of the GNU General Public License along
+-- with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 local pl = require 'pl.import_into'()
 pl.app.require_here()
 local query = require 'query'
@@ -7,7 +19,8 @@ local query = require 'query'
 DESCRIPTION = [[
 Program
 Progenitor v1.0.0
-Created by Daly Graham Barron 2021
+Copyright (C) Daly Graham Barron 2021
+Free Software under the GPL 3 license
  -h, --help shows help
  -I... (string) extra search directory for plugins
  <plugin> (string) Determines the type of project to generate.
