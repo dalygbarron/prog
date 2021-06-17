@@ -28,6 +28,29 @@ Free Software under the GPL 3 license
                    currently existent).
 ]]
 
+--- An iteration function that works like next except it also tells you if you
+-- are on the last value in the table so you can do special logic then like eg
+-- omitting a final comma if writing a list.
+-- @param table is the table to iterate over.
+-- @param index is the key that we are up to.
+-- @return the new index, the value, and a truthy/falsy value for whether or
+--         not it is the last value, unless the index is for the last value in
+--         which case you just get nil
+function iter_ended(table, index)
+    local new_index, value = next(table, index)
+    if new_index ~= nil then
+        return new_index, value, next(table, new_index)
+    end
+    return nil
+end
+
+--- Like pairs but it uses iter_ended instead of next.
+-- @param table the table we are iterating over.
+-- @return iter_ended function and the passed table.
+function pairs_ended(table)
+    return iter_ended, table
+end
+
 --- Finds the location of a plugin by searching in some places like home.
 -- Actually, right now, ~/.prog/pluginname is the only place it looks but it
 -- might look in more places in the future. For example penlight provides
@@ -104,9 +127,14 @@ function writing(plugin, target, extra_args, search)
     local script = assert(load(code, plugin.name, 't', {
         error = error,
         assert = assert,
+        pairs = pairs,
+        ipairs = ipairs,
+        pairs_ended = pairs_ended,
+        next = next,
         year = os.date('%Y'),
         stringToTable = pl.pretty.read,
         tableToString = pl.pretty.write,
+        dump = pl.pretty.dump,
         tablex = pl.tablex,
         path = pl.path,
         query = query,
