@@ -18,12 +18,9 @@ a folder then you can also include template files and assets and stuff there.
 
 ## Usage
 ```
-prog pluginname folder [-v -h]
+ -h, --help shows help
+ -I... (string) extra search directory for plugins
+ <plugin> (string) Determines the type of project to generate.
+ <folder> (string) The folder to create the project in (must be empty or not
+                   currently existent).
 ```
-Pluginname is the name of the plugin you wish to execute. Folder is the folder
-in which you want the files to be created. It must either be an empty folder or
-it must be a folder that does not yet exist.
-
-The flags -v and -h can be passed at any point and will result in no work being
-done, the program will simply output the version or help information and then
-terminate.
